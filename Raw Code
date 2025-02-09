@@ -1,0 +1,278 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Console.OutputEncoding = System.Text.Encoding.UTF8; // Ensure proper character display
+
+        // Display the main ASCII banner
+        DisplayAsciiBanner();
+
+        while (true)
+        {
+            Console.WriteLine("\nMAIN MENU:");
+            Console.WriteLine("1. Convert Text to ASCII Banner");
+            Console.WriteLine("2. Exit");
+            Console.Write("Choose an option: ");
+
+            string choice = Console.ReadLine();
+            if (choice == "1")
+            {
+                Console.Clear(); // Clear the screen
+                DisplayAsciiBannerWithCredit(); // Show banner before asking for style
+                ChooseAsciiBannerType();
+            }
+            else if (choice == "2")
+            {
+                Console.WriteLine("Exiting program...");
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice, please try again.");
+            }
+        }
+    }
+
+    static void DisplayAsciiBanner()
+    {
+        string[] banner = new string[]
+        {
+            "    ___   _____ ______________   ___    ____  ______  ",
+            "   /   | / ___// ____/  _/  _/  /   |  / __ \\ /  __/ ",
+            "  / /| | \\__ \\/ /    / / / /   / /| | / /_/ / / /    ",
+            " / ___ |___/ / /____/ /_/ /   / ___ |/ _, _/ / /     ",
+            "/_/  |_/____/\\____/___/___/  /_/  |_/_/ |_| /_/      ",
+            "                                                     ",
+            "                                - Made By L3KKX    "
+        };
+
+        Console.ForegroundColor = ConsoleColor.Cyan; // Change text color
+        foreach (string line in banner)
+        {
+            Console.WriteLine(line);
+        }
+        Console.ResetColor();
+    }
+
+    static void DisplayAsciiBannerWithCredit()
+    {
+        string[] banner = new string[]
+        {
+            "    ___   _____ ______________   ___    ____  ______  ",
+            "   /   | / ___// ____/  _/  _/  /   |  / __ \\ /  __/ ",
+            "  / /| | \\__ \\/ /    / / / /   / /| | / /_/ / / /    ",
+            " / ___ |___/ / /____/ /_/ /   / ___ |/ _, _/ / /     ",
+            "/_/  |_/____/\\____/___/___/  /_/  |_/_/ |_| /_/      ",
+            "                                                     ",
+            "                                - Made By L3KKX    "
+        };
+
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        foreach (string line in banner)
+        {
+            Console.WriteLine(line);
+        }
+        Console.ResetColor();
+    }
+
+    static void ChooseAsciiBannerType()
+    {
+        Console.WriteLine("\nChoose ASCII Banner Type:");
+        Console.WriteLine("1. Big");
+        Console.WriteLine("2. Small");
+        Console.WriteLine("3. Bold");
+        Console.Write("Enter your choice: ");
+        string typeChoice = Console.ReadLine();
+
+        if (typeChoice == "1")
+        {
+            ConvertTextToAsciiBig();
+        }
+        else if (typeChoice == "2")
+        {
+            ConvertTextToAsciiSmall();
+        }
+        else if (typeChoice == "3")
+        {
+            ConvertTextToAsciiBold();
+        }
+        else
+        {
+            Console.WriteLine("Invalid choice, returning to menu...");
+        }
+    }
+
+    static void ConvertTextToAsciiBig()
+    {
+        Console.Write("\nEnter text to convert to ASCII banner: ");
+        string input = Console.ReadLine()?.ToUpper();
+
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            Console.WriteLine("No input provided. Returning to menu...");
+            return;
+        }
+
+        // Define "Big" ASCII font
+        Dictionary<char, string[]> asciiFontBig = new Dictionary<char, string[]>
+        {
+            { 'A', new string[] { "    A    ", "   A A   ", "  A   A  ", " AAAAAAA ", " A     A " } },
+            { 'B', new string[] { " BBBBB  ", " B    B ", " BBBBB  ", " B    B ", " BBBBB  " } },
+            { 'C', new string[] { "  CCCCC ", " C      ", " C      ", " C      ", "  CCCCC " } },
+            { 'D', new string[] { " DDDDD  ", " D    D ", " D    D ", " D    D ", " DDDDD  " } },
+            { 'E', new string[] { " EEEEE ", " E     ", " EEEE  ", " E     ", " EEEEE " } },
+            { 'F', new string[] { " FFFFF ", " F     ", " FFFF  ", " F     ", " F     " } },
+            { 'G', new string[] { "  GGGG  ", " G      ", " G  GGG ", " G    G ", "  GGGG  " } },
+            { 'H', new string[] { " H    H ", " H    H ", " HHHHHH ", " H    H ", " H    H " } },
+            { 'I', new string[] { " IIIII ", "   I   ", "   I   ", "   I   ", " IIIII " } },
+            { 'J', new string[] { " JJJJJ ", "   J   ", "   J   ", " J J   ", "  JJ   " } },
+            { 'K', new string[] { " K   K ", " K  K  ", " KK    ", " K  K  ", " K   K " } },
+            { 'L', new string[] { " L     ", " L     ", " L     ", " L     ", " LLLLL " } },
+            { 'M', new string[] { " M   M ", " MM MM ", " M M M ", " M   M ", " M   M " } },
+            { 'N', new string[] { " N   N ", " NN  N ", " N N N ", " N  NN ", " N   N " } },
+            { 'O', new string[] { "  OOO  ", " O   O ", " O   O ", " O   O ", "  OOO  " } },
+            { 'P', new string[] { " PPPPP ", " P   P ", " PPPPP ", " P     ", " P     " } },
+            { 'Q', new string[] { "  QQQ  ", " Q   Q ", " Q   Q ", " Q  QQ ", "  QQQQ " } },
+            { 'R', new string[] { " RRRRR ", " R   R ", " RRRR  ", " R  R  ", " R   R " } },
+            { 'S', new string[] { "  SSS  ", " S     ", "  SSS  ", "     S ", "  SSS  " } },
+            { 'T', new string[] { " TTTTT ", "   T   ", "   T   ", "   T   ", "   T   " } },
+            { 'U', new string[] { " U   U ", " U   U ", " U   U ", " U   U ", "  UUU  " } },
+            { 'V', new string[] { " V   V ", " V   V ", " V   V ", "  V V  ", "   V   " } },
+            { 'W', new string[] { " W   W ", " W   W ", " W W W ", " WW WW ", " W   W " } },
+            { 'X', new string[] { " X   X ", "  X X  ", "   X   ", "  X X  ", " X   X " } },
+            { 'Y', new string[] { " Y   Y ", "  Y Y  ", "   Y   ", "   Y   ", "   Y   " } },
+            { 'Z', new string[] { " ZZZZZ ", "    Z  ", "   Z   ", "  Z    ", " ZZZZZ " } },
+            { ' ', new string[] { "       ", "       ", "       ", "       ", "       " } }
+        };
+
+        Console.WriteLine("\nGenerated ASCII Art:\n");
+        for (int row = 0; row < 5; row++)
+        {
+            foreach (char c in input)
+            {
+                if (asciiFontBig.ContainsKey(c))
+                {
+                    Console.Write(asciiFontBig[c][row] + "  ");
+                }
+            }
+            Console.WriteLine();
+        }
+    }
+
+    static void ConvertTextToAsciiSmall()
+    {
+        // Define the "Small" font (same approach as Big, just with smaller patterns)
+        Dictionary<char, string[]> asciiFontSmall = new Dictionary<char, string[]>
+        {
+            { 'A', new string[] { "  A  ", " A A ", "AAAAA", "A   A", "A   A" } },
+            { 'B', new string[] { "BBBB ", "B   B", "BBBB ", "B   B", "BBBB " } },
+            { 'C', new string[] { " CCC ", "C    ", "C    ", "C    ", " CCC " } },
+            { 'D', new string[] { "DDDD ", "D   D", "D   D", "D   D", "DDDD " } },
+            { 'E', new string[] { "EEEEE", "E    ", "EEE  ", "E    ", "EEEEE" } },
+            { 'F', new string[] { "FFFFF", "F    ", "FFF  ", "F    ", "F    " } },
+            { 'G', new string[] { " GGG ", "G    ", "G  GG", "G   G", " GGG " } },
+            { 'H', new string[] { "H   H", "H   H", "HHHHH", "H   H", "H   H" } },
+            { 'I', new string[] { " III ", "  I  ", "  I  ", "  I  ", " III " } },
+            { 'J', new string[] { "  JJJ", "   J ", "   J ", "J  J ", " JJ  " } },
+            { 'K', new string[] { "K   K", "K  K ", "KK   ", "K  K ", "K   K" } },
+            { 'L', new string[] { "L    ", "L    ", "L    ", "L    ", "LLLLL" } },
+            { 'M', new string[] { "M   M", "MM MM", "M M M", "M   M", "M   M" } },
+            { 'N', new string[] { "N   N", "NN  N", "N N N", "N  NN", "N   N" } },
+            { 'O', new string[] { " OOO ", "O   O", "O   O", "O   O", " OOO " } },
+            { 'P', new string[] { "PPPP ", "P   P", "PPPP ", "P    ", "P    " } },
+            { 'Q', new string[] { " QQQ ", "Q   Q", "Q   Q", "Q  Q ", " QQ Q" } },
+            { 'R', new string[] { "RRRR ", "R   R", "RRRR ", "R  R ", "R   R" } },
+            { 'S', new string[] { " SSS ", "S    ", " SSS ", "    S", " SSS " } },
+            { 'T', new string[] { "TTTTT", "  T  ", "  T  ", "  T  ", "  T  " } },
+            { 'U', new string[] { "U   U", "U   U", "U   U", "U   U", " UUU " } },
+            { 'V', new string[] { "V   V", "V   V", "V   V", " V V ", "  V  " } },
+            { 'W', new string[] { "W   W", "W   W", "W W W", "WW WW", "W   W" } },
+            { 'X', new string[] { "X   X", " X X ", "  X  ", " X X ", "X   X" } },
+            { 'Y', new string[] { "Y   Y", " Y Y ", "  Y  ", "  Y  ", "  Y  " } },
+            { 'Z', new string[] { "ZZZZZ", "   Z ", "  Z  ", " Z   ", "ZZZZZ" } },
+            { ' ', new string[] { "     ", "     ", "     ", "     ", "     " } }
+        };
+
+        Console.Write("\nEnter text to convert to ASCII banner: ");
+        string input = Console.ReadLine()?.ToUpper();
+
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            Console.WriteLine("No input provided. Returning to menu...");
+            return;
+        }
+
+        Console.WriteLine("\nGenerated ASCII Art (Small):\n");
+        for (int row = 0; row < 5; row++)
+        {
+            foreach (char c in input)
+            {
+                if (asciiFontSmall.ContainsKey(c))
+                {
+                    Console.Write(asciiFontSmall[c][row] + "  ");
+                }
+            }
+            Console.WriteLine();
+        }
+    }
+
+    static void ConvertTextToAsciiBold()
+    {
+        // Define the "Bold" font (bold characters with thicker lines)
+        Dictionary<char, string[]> asciiFontBold = new Dictionary<char, string[]>
+        {
+            { 'A', new string[] { " AAA ", "A   A", "AAAAA", "A   A", "A   A" } },
+            { 'B', new string[] { "BBBBB", "B   B", "BBBBB", "B   B", "BBBBB" } },
+            { 'C', new string[] { " CCCC", "C    ", "C    ", "C    ", " CCCC" } },
+            { 'D', new string[] { "DDDDD", "D   D", "D   D", "D   D", "DDDDD" } },
+            { 'E', new string[] { "EEEEE", "E    ", "EEE  ", "E    ", "EEEEE" } },
+            { 'F', new string[] { "FFFFF", "F    ", "FFF  ", "F    ", "F    " } },
+            { 'G', new string[] { " GGGG ", "G     ", "G  GG ", "G   G ", " GGGG " } },
+            { 'H', new string[] { "H   H", "H   H", "HHHHH", "H   H", "H   H" } },
+            { 'I', new string[] { " III ", "  I  ", "  I  ", "  I  ", " III " } },
+            { 'J', new string[] { "  JJJ", "   J ", "   J ", "J  J ", " JJ  " } },
+            { 'K', new string[] { "K   K", "K  K ", "KK   ", "K  K ", "K   K" } },
+            { 'L', new string[] { "L    ", "L    ", "L    ", "L    ", "LLLLL" } },
+            { 'M', new string[] { "M   M", "MM MM", "M M M", "M   M", "M   M" } },
+            { 'N', new string[] { "N   N", "NN  N", "N N N", "N  NN", "N   N" } },
+            { 'O', new string[] { " OOO ", "O   O", "O   O", "O   O", " OOO " } },
+            { 'P', new string[] { "PPPPP", "P   P", "PPPPP", "P    ", "P    " } },
+            { 'Q', new string[] { " QQQ ", "Q   Q", "Q   Q", "Q  QQ", " QQ Q" } },
+            { 'R', new string[] { "RRRRR", "R   R", "RRRRR", "R  R ", "R   R" } },
+            { 'S', new string[] { " SSS ", "S    ", " SSS ", "    S", " SSS " } },
+            { 'T', new string[] { "TTTTT", "  T  ", "  T  ", "  T  ", "  T  " } },
+            { 'U', new string[] { "U   U", "U   U", "U   U", "U   U", " UUU " } },
+            { 'V', new string[] { "V   V", "V   V", "V   V", " V V ", "  V  " } },
+            { 'W', new string[] { "W   W", "W   W", "W W W", "WW WW", "W   W" } },
+            { 'X', new string[] { "X   X", " X X ", "  X  ", " X X ", "X   X" } },
+            { 'Y', new string[] { "Y   Y", " Y Y ", "  Y  ", "  Y  ", "  Y  " } },
+            { 'Z', new string[] { "ZZZZZ", "   Z ", "  Z  ", " Z   ", "ZZZZZ" } },
+            { ' ', new string[] { "     ", "     ", "     ", "     ", "     " } }
+        };
+
+        Console.Write("\nEnter text to convert to ASCII banner: ");
+        string input = Console.ReadLine()?.ToUpper();
+
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            Console.WriteLine("No input provided. Returning to menu...");
+            return;
+        }
+
+        Console.WriteLine("\nGenerated ASCII Art (Bold):\n");
+        for (int row = 0; row < 5; row++)
+        {
+            foreach (char c in input)
+            {
+                if (asciiFontBold.ContainsKey(c))
+                {
+                    Console.Write(asciiFontBold[c][row] + "  ");
+                }
+            }
+            Console.WriteLine();
+        }
+    }
+}
