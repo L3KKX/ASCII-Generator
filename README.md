@@ -27,6 +27,7 @@ If You Do Not Want To Do These Steps, The Raw Code Will Be Also Shown At The Top
 # 
 # ⚙️ Note ⚙️
 
+Extraction Is Not Required But Is Always Recommended 
 You Can Delete The Previous 'ASCII-Generator-main.zip' ZIP File As It Is No Longer Needed And Already Extracted
 
 # 
